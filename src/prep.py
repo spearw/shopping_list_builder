@@ -15,13 +15,13 @@ class RecipePrepper:
 
             recipes = {}
             for recipe in recipe_reader:
-                # Convert row to list
+                # Convert row to dict
                 recipes[recipe[0]] = recipe[1]
             return recipes
 
     def parse_recipes(self, recipes):
 
-        # Remove header
+        # Skip header
         recipes.pop("recipe_name")
 
         ingredients = {}
@@ -37,11 +37,33 @@ class RecipePrepper:
                 continue
             with open(recipe_path, newline='') as csvfile:
                 reader = csv.reader(csvfile)
+
+                # Skip header
+                reader.__next__()
                 for row in reader:
+                    # Parse row
                     ingredient_name = row[0].lower()
                     ingredient_amount = ingredients.get(ingredient_name, 0)
                     amount_to_add = int(row[1]) * int(recipe_amount)
-                    ingredients[ingredient_name] = ingredient_amount + amount_to_add
+                    category_name = row[2].lower()
+                    if category_name == "":
+                        category_name = "Other"
+
+                    store_name = row[3].lower()
+                    if store_name == "":
+                        store_name = "Unknown Store"
+
+                    # Get existing store
+                    store = ingredients.get(store_name, {})
+                    # Get existing category
+                    category = store.get(category_name, {})
+                    # Add amount to existing amount
+                    category[ingredient_name] = category.get(ingredient_name, 0) + amount_to_add
+                    # Add category to store
+                    store[category_name] = category
+                    # Add store to ingredients
+                    ingredients[store_name] = store
+
 
         return ingredients
 

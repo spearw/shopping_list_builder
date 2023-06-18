@@ -1,3 +1,4 @@
-tomatoes,2,,,
-steak,2,,,
-quail eggs,2,,,
+ingredient,quantity,category,store,
+tomatoes,2,Produce,costco,
+steak,2,Meat,costco,
+quail eggs,2,Dairy,star market,

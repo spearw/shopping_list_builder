@@ -1,3 +1,4 @@
-onions,2,,,
-MEATBALLS,3,,,
-Quail Eggs,1,,,
+ingredient,quantity,category,store,
+onions,2,produce,star market,
+MEATBALLS,3,meat,costco,
+Quail Eggs,1,dairy,star market,
