@@ -1,0 +1,1 @@
+Shopping List Builder is a small project to help with meal prep. The idea is that you can enter recipes and the amount of times you want to make that recipe, and the project will create a shopping list for you out of all of the recipes.
